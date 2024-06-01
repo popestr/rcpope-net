@@ -1,162 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156111120-1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-        gtag('config', 'UA-156111120-1');
+      gtag("config", "UA-156111120-1");
     </script>
 
     <title>Ryan Pope's Course History</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="src/css/app.css">
-    <link rel="stylesheet" href="src/css/courses.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,500;1,500;1,700&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="src/css/app.css" />
+    <link rel="stylesheet" href="src/css/courses.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,500;1,500;1,700&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://kit.fontawesome.com/e0a42c5399.js" crossorigin="anonymous"></script>
     <script src="src/js/models.js"></script>
     <script src="src/js/app.js"></script>
     <script src="src/js/courses.js"></script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
     <meta property="og:image" content="index_capture.png" />
     <meta property="og:image:width" content="1920" />
     <meta property="og:image:height" content="938" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="nav-container header">
-        <div class="nav-menu">
-            <a href="about.html">
-                <div class="nav-menu-item">
-                    About
-                </div>
-            </a>
-            <a href="contact.html">
-                <div class="nav-menu-item">
-                    Contact
-                </div>
-            </a>
-            <a href="courses.html">
-                <div class="nav-menu-item">
-                    Courses
-                </div>
-            </a>
-        </div>
-        <a href="index.html" class="header-logo-container"><img src="assets/logo_transparent.svg" class="logo"
-                id="header-logo"
-                alt="rcpope.net website logo"></a>
-        <div class="mobile-text">My Course History</div>
-        <div class="nav-menu nav-menu-right">
-            <a href="assets/Ryan_Pope_Resume.pdf" aria-label="Open Resume PDF">
-                <div class="nav-menu-item">
-                    CV/Resume
-                </div>
-            </a>
-        </div>
+      <div class="nav-menu">
+        <a href="about.html">
+          <div class="nav-menu-item">About</div>
+        </a>
+        <a href="contact.html">
+          <div class="nav-menu-item">Contact</div>
+        </a>
+        <a href="courses.html">
+          <div class="nav-menu-item">Courses</div>
+        </a>
+      </div>
+      <a href="index.html" class="header-logo-container"
+        ><img src="assets/logo_transparent.svg" class="logo" id="header-logo" alt="rcpope.net website logo"
+      /></a>
+      <div class="mobile-text">My Course History</div>
+      <div class="nav-menu nav-menu-right">
+        <a href="assets/Ryan_Pope_Resume.pdf" aria-label="Open Resume PDF">
+          <div class="nav-menu-item">CV/Resume</div>
+        </a>
+      </div>
     </div>
     <div id="typed-strings-courses">
-        <p>My Course History</p>
+      <p>My Course History</p>
     </div>
     <div class="courses-content">
-        <div class="courses-menu">
-            <span class="courses-header">
-                <span id="typedCourses"></span>
-                <span>
-                    <a class="small-button-link" href="http://api.rcpope.net/courses_json.php" target="_blank">
-                        <span class="small-button">
-                            <i class="fas fa-external-link-alt"></i> View as JSON
-                        </span>
-                    </a>
-                </span>
-            </span>
+      <div class="courses-menu">
+        <span class="courses-header">
+          <span id="typedCourses"></span>
+          <span>
+            <a class="small-button-link" href="http://api.rcpope.net/courses_json.php" target="_blank">
+              <span class="small-button"> <i class="fas fa-external-link-alt"></i> View as JSON </span>
+            </a>
+          </span>
+        </span>
 
-            <div class="loading-icon-container">
-                <div class="dot-pulse"></div>
-            </div>
-            <div class="filter-list">
-                <div class="filter-group filter-group--class" data-selected="0">
-                    <div class="filter-group-header">
-                        Filter by Course Category
-                    </div>
-                </div>
-                <div class="filter-group filter-group--lang" data-selected="0">
-                    <div class="filter-group-header">
-                        Filter by Language
-                    </div>
-                </div>
-            </div>
+        <div class="loading-icon-container">
+          <div class="dot-pulse"></div>
         </div>
+        <div class="filter-list">
+          <div class="filter-group filter-group--class" data-selected="0">
+            <div class="filter-group-header">Filter by Course Category</div>
+          </div>
+          <div class="filter-group filter-group--lang" data-selected="0">
+            <div class="filter-group-header">Filter by Language</div>
+          </div>
+        </div>
+      </div>
 
-        <div class="courses-list" id="main-course-list" data-contains="0">
-            <div class="loading-icon-container">
-                <div class="dot-pulse"></div>
-            </div>
-            <div class="results-placeholder">
-                <div class="results-placeholder-text">
-                    <div class="results-placeholder-header"><i class="fas fa-ghost placeholder-icon"></i>
-                        <br> Boo! There's nothing here.
-                    </div>
-                    <div>Try selecting a filter from the menu on the left.</div>
-                </div>
-            </div>
+      <div class="courses-list" id="main-course-list" data-contains="0">
+        <div class="loading-icon-container">
+          <div class="dot-pulse"></div>
         </div>
+        <div class="results-placeholder">
+          <div class="results-placeholder-text">
+            <div class="results-placeholder-header">
+              <i class="fas fa-ghost placeholder-icon"></i> <br />
+              Boo! There's nothing here.
+            </div>
+            <div>Try selecting a filter from the menu on the left.</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        let maxArrayPos = 0;
-        var typedCourses = new Typed('#typedCourses', {
-            stringsElement: '#typed-strings-courses',
-            typeSpeed: 40,
-            showCursor: false,
-        });
+      let maxArrayPos = 0;
+      var typedCourses = new Typed("#typedCourses", {
+        stringsElement: "#typed-strings-courses",
+        typeSpeed: 40,
+        showCursor: false,
+      });
     </script>
 
-    <a class="source-link" href="http://github.com/Popestr/rcpope-net/blob/master/courses.html" target="_blank">
-        <div class="source-button">
-            <i class="fas fa-code code-icon"></i> View source
-        </div>
+    <a class="source-link" href="http://github.com/Popestr/rcpope-net/blob/master/public/courses.html" target="_blank">
+      <div class="source-button"><i class="fas fa-code code-icon"></i> View source</div>
     </a>
 
     <div class="nav-container footer">
-        <a href="https://www.linkedin.com/in/rcpope/" class="social-link"><i class="fab fa-linkedin"></i></a>
-        <div class="footer-copyright">
-            &copy; 2018-2023 Ryan Pope
-        </div>
-        <a href="https://www.github.com/Popestr" class="social-link"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/rcpope/" class="social-link"><i class="fab fa-linkedin"></i></a>
+      <div class="footer-copyright">&copy; 2018-2023 Ryan Pope</div>
+      <a href="https://www.github.com/Popestr" class="social-link"><i class="fab fa-github"></i></a>
     </div>
 
     <div class="nav-container mobile" id="mobile-menu">
-        <div class="nav-mobile">
-            <a href="about.html" class="nav-mobile-link">
-                <i class="far fa-id-card"></i>
-            </a>
-            <a href="courses.html" class="nav-mobile-link">
-                <i class="fas fa-graduation-cap"></i>
-            </a>
-            <a href="index.html" class="nav-mobile-link"><img src="assets/logo_transparent.svg" class="logo"
-                    id="logo-mobile"></a>
-            <a href="contact.html" class="nav-mobile-link">
-                <i class="fas fa-at"></i>
-            </a>
-            <a href="assets/Ryan_Pope_Resume.pdf" class="nav-mobile-link">
-                <i class="fas fa-file-invoice"></i>
-            </a>
-        </div>
+      <div class="nav-mobile">
+        <a href="about.html" class="nav-mobile-link">
+          <i class="far fa-id-card"></i>
+        </a>
+        <a href="courses.html" class="nav-mobile-link">
+          <i class="fas fa-graduation-cap"></i>
+        </a>
+        <a href="index.html" class="nav-mobile-link"><img src="assets/logo_transparent.svg" class="logo" id="logo-mobile" /></a>
+        <a href="contact.html" class="nav-mobile-link">
+          <i class="fas fa-at"></i>
+        </a>
+        <a href="assets/Ryan_Pope_Resume.pdf" class="nav-mobile-link">
+          <i class="fas fa-file-invoice"></i>
+        </a>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156111120-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-156111120-1');
+	</script>
+
+	<title>Ryan Pope</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="src/css/app.css">
+	<link rel="stylesheet" href="src/css/index.css">
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,500;1,500;1,700&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap" rel="stylesheet">
+
+
+	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+	<script src="https://kit.fontawesome.com/e0a42c5399.js" crossorigin="anonymous"></script>
+	<script src="src/js/app.js"></script>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+	<link rel="manifest" href="site.webmanifest">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+	<meta property="og:image" content="index_capture.png" />
+	<meta property="og:title" content="Ryan Pope's Portfolio Site" />
+	<meta property="og:image:width" content="1920" />
+	<meta property="og:image:height" content="938" />
+</head>
+
+<body>
+	<div class="nav-container header">
+		<div class="nav-menu">
+			<a href="about.html">
+				<div class="nav-menu-item">
+					About
+				</div>
+			</a>
+			<a href="contact.html">
+				<div class="nav-menu-item">
+					Contact
+				</div>
+			</a>
+			<a href="courses.html">
+				<div class="nav-menu-item">
+					Courses
+				</div>
+			</a>
+		</div>
+		<a href="index.html" class="header-logo-container"><img src="assets/logo_transparent.svg" class="logo"
+				id="header-logo"
+				alt="rcpope.net website logo"></a>
+		<div class="mobile-text">Welcome to rcpope.net</div>
+		<div class="nav-menu nav-menu-right">
+			<a href="assets/Ryan_Pope_Resume.pdf" aria-label="Open Resume PDF">
+				<div class="nav-menu-item">
+					CV/Resume
+				</div>
+			</a>
+		</div>
+	</div>
+	<div id="typed-strings">
+		<p>is a software engineer</p>
+		<p>graduated from the University of Virginia</p>
+		<p>believes in open-source</p>
+		<p>listens to music 24/7</p>
+	</div>
+	<div class="main-content">
+		<div class="carousel-top">
+			<p class="carousel-header">
+				<span id="name">Ryan Pope </span><span id="typed"></span>
+			</p>
+		</div>
+		<div class="carousel-bottom">
+			<div class="carousel-item" id="carousel-item-0">
+				<a href="assets/Ryan_Pope_Resume.pdf">
+					<div class="link-button">View my resume</div>
+				</a>
+			</div>
+			<div class="carousel-item" id="carousel-item-1">
+				<a href="courses.html">
+					<div class="link-button">Learn about the courses I've taken</div>
+				</a>
+			</div>
+			<div class="carousel-item" id="carousel-item-2">
+				<a href="about.html#commitment">
+					<div class="link-button">Read about my commitment to FOSS</div>
+				</a>
+			</div>
+			<div class="carousel-item" id="carousel-item-3">
+				<a href="https://www.last.fm/user/popestr">
+					<div class="link-button">Check out my scrobbles on Last.fm</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		fadeIn(document.getElementById('carousel-item-0'), 1000);
+
+		let maxArrayPos = 0;
+
+		var typed = new Typed('#typed', {
+			stringsElement: '#typed-strings',
+			loop: true,
+			typeSpeed: 40,
+			backSpeed: 30,
+			cursorChar: '_',
+			backDelay: 3000,
+			onStringTyped: function (arrayPos, self) {
+				maxArrayPos = Math.max(maxArrayPos, arrayPos);
+				let lastIndex = arrayPos > 0 ? arrayPos - 1 : maxArrayPos;
+				if (lastIndex !== arrayPos) {
+					document.getElementById('carousel-item-' + lastIndex).style.display = 'none';
+					fadeIn(document.getElementById('carousel-item-' + arrayPos), 500);
+				}
+			}
+		});
+	</script>
+
+	<a class="source-link" href="http://github.com/Popestr/rcpope-net/blob/master/index.html" target="_blank">
+		<div class="source-button">
+			<i class="fas fa-code code-icon"></i> View source
+		</div>
+	</a>
+
+	<div class="nav-container footer">
+		<a href="https://www.linkedin.com/in/rcpope/" class="social-link"><i class="fab fa-linkedin"></i></a>
+		<div class="footer-copyright">
+			&copy; 2018-2023 Ryan Pope
+		</div>
+		<a href="https://www.github.com/Popestr" class="social-link"><i class="fab fa-github"></i></a>
+	</div>
+
+	<div id="socials"></div>
+
+	<div class="nav-container mobile" id="mobile-menu">
+		<div class="nav-mobile">
+			<a href="about.html" class="nav-mobile-link">
+				<i class="far fa-id-card"></i>
+			</a>
+			<a href="courses.html" class="nav-mobile-link">
+				<i class="fas fa-graduation-cap"></i>
+			</a>
+			<a href="index.html" class="nav-mobile-link"><img src="assets/logo_transparent.svg" class="logo"
+					id="logo-mobile"></a>
+			<a href="contact.html" class="nav-mobile-link">
+				<i class="fas fa-at"></i>
+			</a>
+			<a href="assets/Ryan_Pope_Resume.pdf" class="nav-mobile-link">
+				<i class="fas fa-file-invoice"></i>
+			</a>
+		</div>
+	</div>
+
+</body>
+
+</html>

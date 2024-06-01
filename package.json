@@ -1,0 +1,15 @@
+{
+  "name": "rcpope-net",
+  "version": "0.0.1",
+  "repository": "https://github.com/popestr/rcpope.net",
+  "author": "Ryan Pope <ryan@rcpope.net>",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "vercel": "^31.2.2"
+  },
+  "scripts": {
+    "setup": "bun vercel login && bun vercel link",
+    "start": "bun vercel dev",
+    "dev": "bun start"
+  }
+}

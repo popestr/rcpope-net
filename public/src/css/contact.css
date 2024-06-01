@@ -1,0 +1,69 @@
+.contact-content {
+    width: 60%;
+    margin: 2rem auto;
+    display:flex;
+    flex-direction: column;
+    font-size: 1rem;
+    line-height: 24px;
+}
+
+.contact-header {
+    width: 100%;
+    font-size: 2rem;
+    color:lightsteelblue;
+    margin-bottom: 16px;
+    display:flex;
+    align-items: center;
+}
+
+.contact-link {
+    color: lightsteelblue;
+}
+
+.contact-text p {
+    color: lightslategray;
+    font-size: 1rem;
+    margin: 8px 0 16px 0;
+}
+
+.contact-table {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    color: lightsteelblue;
+    width: 100%;
+}
+
+.contact-icon {
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-icon {
+    margin-left: 0.5rem;
+}
+
+.contact-table a {
+    text-decoration: none;
+}
+
+#typedContact {
+    min-height: 2.5rem;
+}
+
+@media screen and (max-width: 800px) {
+    .contact-content {
+        width: 90%;
+    }
+
+    .contact-header {
+        display: none;
+    }
+}

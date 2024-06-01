@@ -1,0 +1,394 @@
+.courses-content {
+    width: 80%;
+    margin: 2rem 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.courses-menu {
+	width: calc(30% - 5rem);
+}
+
+.courses-list {
+	width: calc(70% - 5rem);
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+
+.courses-header {
+    width: 100%;
+    font-size: 2rem;
+    color:lightsteelblue;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+/* don't show empty course groups */
+.course-group[data-contains="0"] {
+	display: none;
+}
+
+.course-group-header {
+    color: lightsteelblue;
+    font-size: 1.3rem;
+	width: 100%;
+	cursor: pointer;
+	margin-bottom: 1rem;
+}
+
+.course-group--collapsed .course {
+	display: none;
+}
+
+.course-group--collapsed .course-group-arrow {
+	-moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+	transform: rotate(-90deg);
+}
+
+.course {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: calc(100% / 3 - 0.5rem);
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    border: 2px solid #3f4857;
+    border-radius: 5px;
+    cursor: default;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+	min-height: 5rem;
+}
+
+.course--hidden {
+	display: none;
+}
+
+/* don't show courses that aren't filtered in */
+.course[data-selectedby="0"] {
+	display: none;
+}
+
+.course-title {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.course-icons {
+  padding: 0 0.5rem 0 0.5rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  background-color: lightslategray;
+}
+
+.course:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.course--selected {
+  opacity: 100;
+  display: flex;
+}
+
+.course-active, .course:hover {
+    border: 2px solid white;
+}
+
+.course-icons {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.course-classifications, .course-languages {
+    display: flex;
+}
+
+.course-classifications i {
+    padding-right: 5px;
+}
+
+.course-languages i {
+    padding-left: 5px;
+}
+
+.course-code {
+    color: lightsteelblue;
+    margin-right: 0.5rem;
+}
+
+.course-name {
+    font-style: italic;
+}
+
+.courses-legend {
+    width: 20%;
+    position: fixed;
+    left: 70%;
+    top: 15rem;
+}
+
+.filter-list {
+	top: 20px;
+    font-size: 0.8rem;
+    width: 100%;
+    font-weight: 100;
+    display: none;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: rgba(255,255,255, 0.1);
+}
+
+.courses-menu[data-loading="false"] > .filter-list {
+  display: flex;
+}
+
+.filter-group-header {
+    font-size: 0.7rem;
+    width: 100%;
+}
+
+.filter-group {
+    margin: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-item {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px 5px 0 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #3f4857;
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
+}
+
+.filter-item:hover, .filter-selected {
+    background-color: lightslategray;
+}
+
+.filter-active {
+	border: 2px solid white;
+}
+
+.filter-text::after {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    display: inline-block;
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+    content: '\f067';
+    color: rgba(255, 179, 0, 1);
+    margin-left: 0.5rem;
+}
+
+.filter-selected .filter-text::after {
+    transform: rotate(45deg);
+    color: #ffffff;
+}
+
+.filter-opt {
+	width: 100%;
+	display: flex;
+	height: 1.5rem;
+	align-items: center;
+}
+
+.filter-checkbox {
+	width: 1rem;
+	height: 1rem;
+	margin: 0.5rem;
+	background-color: lightsteelblue;
+}
+
+.filter-checkbox:hover {
+	cursor: pointer;
+}
+
+.icon-wrapper {
+  margin-right: 0.5rem;
+}
+
+.loading-icon-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+#main-course-list[data-loading="false"] > .loading-icon-container,
+.courses-menu[data-loading="false"] > .loading-icon-container {
+  display: none;
+}
+
+.results-placeholder {
+	width: 100%;
+	display: none;
+	justify-content: center;
+	text-align: center;
+	color: rgba(255,255,255, 0.3);
+	-moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
+}
+
+.placeholder-icon {
+	font-size: 3rem;
+	margin: 2rem;
+}
+
+.courses-list[data-contains="0"][data-loading="false"] > .results-placeholder {
+	display: flex;
+} 
+
+#typedCourses {
+    min-height: 2.5rem;
+}
+
+/**
+ * ==============================================
+ * Dot Pulse Loading Icon
+ * Courtesy of nzbin, sourced from https://codepen.io/nzbin/pen/GGrXbp
+ * ==============================================
+ */
+ .dot-pulse {
+    position: relative;
+    left: -9999px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: lightsteelblue;
+    color: lightsteelblue;
+    box-shadow: 9999px 0 0 -5px lightsteelblue;
+    animation: dotPulse 1.5s infinite linear;
+    animation-delay: .25s;
+  }
+  
+  .dot-pulse::before, .dot-pulse::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: lightsteelblue;
+    color: lightsteelblue;
+  }
+  
+  .dot-pulse::before {
+    box-shadow: 9984px 0 0 -5px lightsteelblue;
+    animation: dotPulseBefore 1.5s infinite linear;
+    animation-delay: 0s;
+  }
+  
+  .dot-pulse::after {
+    box-shadow: 10014px 0 0 -5px lightsteelblue;
+    animation: dotPulseAfter 1.5s infinite linear;
+    animation-delay: .5s;
+  }
+  
+  @keyframes dotPulseBefore {
+    0% {
+      box-shadow: 9984px 0 0 -5px lightsteelblue;
+    }
+    30% {
+      box-shadow: 9984px 0 0 2px lightsteelblue;
+    }
+    60%,
+    100% {
+      box-shadow: 9984px 0 0 -5px lightsteelblue;
+    }
+  }
+  
+  @keyframes dotPulse {
+    0% {
+      box-shadow: 9999px 0 0 -5px lightsteelblue;
+    }
+    30% {
+      box-shadow: 9999px 0 0 2px lightsteelblue;
+    }
+    60%,
+    100% {
+      box-shadow: 9999px 0 0 -5px lightsteelblue;
+    }
+  }
+  
+  @keyframes dotPulseAfter {
+    0% {
+      box-shadow: 10014px 0 0 -5px lightsteelblue;
+    }
+    30% {
+      box-shadow: 10014px 0 0 2px lightsteelblue;
+    }
+    60%,
+    100% {
+      box-shadow: 10014px 0 0 -5px lightsteelblue;
+    }
+  }
+
+@media only screen and (max-width: 800px) {
+  .course {
+      width: 100%;
+      margin-right: 0 !important;
+  }
+
+  .course-group:not(.course-group--collapsed) .course[data-selectedby="0"], .course {
+    display: flex;
+  }
+
+  .courses-header, .courses-menu {
+    display: none;
+  }
+
+  .courses-list {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .courses-list, .courses-menu {
+    width: 100%;
+  }
+}

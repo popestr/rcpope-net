@@ -1,0 +1,250 @@
+:root {
+    color-scheme: dark;
+}
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #121212;
+    color: white;
+    padding-bottom: calc(3rem + 5px);
+    padding-top: calc(3rem + 5px);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-container {
+    width: 100%;
+    height: 3rem;
+    background-color: lightslategray;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.header-logo-container {
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    left: 5px;
+    width: calc(100% - 10px);
+    justify-content: center;
+    background-color: rgba(18, 18, 18, 0.75);
+    padding: 0.25rem 0;
+}
+
+.footer-copyright {
+    display: flex;
+    align-items: center;
+    color: lightsteelblue;
+    cursor: default;
+}
+
+.mobile,
+.mobile-text {
+    display: none;
+}
+
+.nav-menu {
+    display: flex;
+    height: 100%;
+    min-width: 300px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+}
+
+.nav-menu-right {
+    justify-content: flex-end;
+}
+
+.nav-menu-item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    color: white;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.nav-menu-right .nav-menu-item::before {
+    border-left: 1px solid black;
+}
+
+.nav-menu-item:hover {
+    background-color: lightsteelblue;
+    color: #121212;
+    box-shadow: rgba(255, 179, 0, 0.9) 0px 5px, rgba(255, 179, 0, 0.6) 0px 10px, rgba(255, 179, 0, 0.4) 0px 15px, rgba(255, 179, 0, 0.2) 0px 20px, rgba(255, 179, 0, 0.05) 0px 25px;
+}
+
+.logo {
+    height: 100%;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    margin: 0 1rem;
+    color: lightslategray;
+    text-decoration: none;
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+}
+
+.social-link:hover {
+    color: lightsteelblue;
+}
+
+.social-icon {
+    height: 70%;
+    margin: 15% 3rem;
+}
+
+
+.subheader {
+    font-size: 1rem;
+    color: #acacac;
+    display: inline-block;
+}
+
+.link {
+    color: white;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.copy-icon {
+    font-size: 0.75rem;
+    padding: 4px;
+    color: #121212;
+    background-color: slategray;
+    border-radius: 5px;
+}
+
+.copy-icon:hover {
+    cursor: pointer;
+    background-color: lightsteelblue;
+}
+
+.copied-text {
+    opacity: 0;
+    font-size: 0.75rem;
+    color: lightslategray;
+    margin-left: 0.5rem;
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+}
+
+.highlight {
+    color: lightsteelblue;
+}
+
+.source-link {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: #121212;
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+}
+
+.source-button,
+.small-button {
+    padding: 5px 10px;
+    background-color: lightslategray;
+    border-radius: 5px;
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+}
+
+.small-button {
+    font-size: 0.8rem;
+}
+
+.source-button:hover,
+.small-button:hover {
+    background-color: lightsteelblue;
+}
+
+@media screen and (max-width: 800px) {
+
+    .source-link,
+    .source-button,
+    .footer,
+    .nav-menu,
+    .web-header,
+    #header-logo {
+        display: none;
+    }
+
+    .copy-icon {
+        display: none !important;
+    }
+
+    .nav-container {
+        justify-content: center;
+    }
+
+    .mobile {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: #212121;
+    }
+
+    .nav-mobile {
+        display: flex;
+        width: 100%;
+        font-size: 2rem;
+        align-items: center;
+    }
+
+    .nav-mobile-link {
+        width: calc(100% / 3);
+        height: calc(100% - 5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #555555;
+    }
+
+    .mobile-text {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+}

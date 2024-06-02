@@ -1,24 +1,23 @@
 package courses
 
-import "database/sql"
+import (
+	"database/sql"
+	"strings"
+)
 
 type Course struct {
-	Semester            string `json:"semester" db:"semester"`
-	CourseCode          string `json:"course_code" db:"course_code"`
-	CourseName          string `json:"course_name" db:"course_name"`
-	CourseTopic         string `json:"course_topic" db:"course_topic"`
-	Classification      string `json:"classification" db:"classification"`
-	CodeAvailable       bool   `json:"code_available" db:"code_available"`
-	Languages           string `json:"languages" db:"languages"`
-	Summary             string `json:"summary" db:"summary"`
-	ClassificationIcons string `json:"classification_icons" db:"classification_icons"`
-	LangIcons           string `json:"lang_icons" db:"lang_icons"`
-	CourseClasses       string `json:"course_classes" db:"course_classes"`
+	Semester            string `json:"semester"`
+	CourseCode          string `json:"course_code"`
+	CourseName          string `json:"course_name"`
+	CourseTopic         string `json:"course_topic"`
+	CodeAvailable       bool   `json:"code_available"`
+	Summary             string `json:"summary"`
+	Classifications      []string `json:"classifications"`
+	Languages 			[]string `json:"languages"`
 }
 
 type Abbreviation struct {
 	Abbreviation string `json:"abbreviation" db:"abbreviation"`
-	IconHTML     string `json:"icon_html" db:"icon_html"`
 	Longname     string `json:"longname" db:"longname"`
 }
 
@@ -34,27 +33,31 @@ type CourseSql struct {
 	CourseCode          sql.NullString `db:"course_code"`
 	CourseName          sql.NullString `db:"course_name"`
 	CourseTopic         sql.NullString `db:"course_topic"`
-	Classification      sql.NullString `db:"classification"`
 	CodeAvailable       sql.NullInt32  `db:"code_available"`
-	Languages           sql.NullString `db:"languages"`
 	Summary             sql.NullString `db:"summary"`
-	ClassificationIcons sql.NullString `db:"classification_icons"`
-	LangIcons           sql.NullString `db:"lang_icons"`
-	CourseClasses       sql.NullString `db:"course_classes"`
+	Classifications 	sql.NullString `db:"classification"`
+	Languages           sql.NullString `db:"languages"`
 }
 
 func (c *CourseSql) Course() Course {
+	var classifications, languages []string
+
+	if c.Classifications.Valid {
+		classifications = strings.Split(c.Classifications.String, " ")
+	}
+
+	if c.Languages.Valid {
+		languages = strings.Split(c.Languages.String, " ")
+	}
+
 	return Course{
 		Semester:            c.Semester.String,
 		CourseCode:          c.CourseCode.String,
 		CourseName:          c.CourseName.String,
 		CourseTopic:         c.CourseTopic.String,
-		Classification:      c.Classification.String,
 		CodeAvailable:       c.CodeAvailable.Int32 == 1,
-		Languages:           c.Languages.String,
 		Summary:             c.Summary.String,
-		ClassificationIcons: c.ClassificationIcons.String,
-		LangIcons:           c.LangIcons.String,
-		CourseClasses:       c.CourseClasses.String,
+		Classifications:     classifications,
+		Languages:           languages,
 	}
 }

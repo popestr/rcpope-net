@@ -3,13 +3,8 @@ package courses
 import "github.com/jmoiron/sqlx"
 
 const courseQuery = `
-SELECT semester, course_code, course_name, course_topic, classification, code_available, languages, summary, 
-STRING_AGG(CASE WHEN type = 'class' THEN icon_html ELSE NULL end, ' ') AS classification_icons, 
-STRING_AGG(CASE WHEN type = 'lang' THEN icon_html ELSE NULL END, ' ') AS lang_icons, 
-STRING_AGG(CONCAT('course--', abbreviation), ' ') AS course_classes
+SELECT semester, course_code, course_name, course_topic, classification, code_available, languages, summary, classification
 FROM courses 
-INNER JOIN abbreviations ON (courses.classification LIKE CONCAT('%', abbreviations.abbreviation, '%') OR courses.languages LIKE CONCAT('%', abbreviations.abbreviation, '%'))
-GROUP BY course_code, semester, course_name, course_topic, classification, code_available, languages, summary, semester_id
 ORDER BY semester_id DESC
 `
 
@@ -30,7 +25,7 @@ func FetchCourses(db *sqlx.DB) ([]Course, error) {
 
 func FetchAbbreviations(db *sqlx.DB, abbrType string) ([]Abbreviation, error) {
 	var abbreviations []Abbreviation
-	err := db.Select(&abbreviations, "SELECT abbreviation, icon_html, longname FROM abbreviations WHERE type = $1", abbrType)
+	err := db.Select(&abbreviations, "SELECT abbreviation, longname FROM abbreviations WHERE type = $1", abbrType)
 	if err != nil {
 		return nil, err
 	}

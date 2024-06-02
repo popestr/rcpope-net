@@ -164,6 +164,24 @@ const appendCourseGroupHeader = (semester, group) => {
 };
 
 /**
+ * Gets the classes for a course (a combination of classifications and languages).
+ * @param {Course} course The course object.
+ * @returns {string[]} The classes for the course.
+ */
+const getCourseClasses = (course) => {
+  // need to handle classifications or languages being undefined
+
+  const classifications = course.classifications || [];
+  const languages = course.languages || [];
+
+  return [...languages.map(formatClass), ...classifications.map(formatClass)];
+};
+
+const formatClass = (abbreviation) => {
+  return `course--${abbreviation}`;
+};
+
+/**
  * Appends a course to a specific group.
  *
  * @param {Course} course - The course object.
@@ -171,7 +189,7 @@ const appendCourseGroupHeader = (semester, group) => {
  */
 const appendCourseToGroup = (course, group) => {
   const courseElement = document.createElement("div");
-  courseElement.classList.add("course", ...course.course_classes.split(" "));
+  courseElement.classList.add("course", ...getCourseClasses(course));
   courseElement.setAttribute("data-classifications", `${course.classification} ${course.languages}`);
   courseElement.setAttribute("data-selectedby", "0");
 
@@ -195,11 +213,11 @@ const appendCourseToGroup = (course, group) => {
 
   const courseClassificationsElement = document.createElement("span");
   courseClassificationsElement.classList.add("course-classifications");
-  courseClassificationsElement.innerHTML = course.classification_icons.replaceAll(`\\"`, `"`) || "";
+  courseClassificationsElement.innerHTML = getIconsByAbbreviations(course.classifications) || "";
 
   const courseLanguagesElement = document.createElement("span");
   courseLanguagesElement.classList.add("course-languages");
-  courseLanguagesElement.innerHTML = course.lang_icons.replaceAll(`\\"`, `"`) || "";
+  courseLanguagesElement.innerHTML = getIconsByAbbreviations(course.languages) || "";
 
   courseIconsElement.appendChild(courseClassificationsElement);
   courseIconsElement.appendChild(courseLanguagesElement);
@@ -225,7 +243,7 @@ const populateFiltersHelper = (items, groupClass) => {
 
     const iconWrapper = document.createElement("span");
     iconWrapper.classList.add("icon-wrapper");
-    iconWrapper.innerHTML = item.icon_html.replaceAll(`\\"`, `"`); // Ensure this content is sanitized/trusted!
+    iconWrapper.innerHTML = getIconByAbbreviation(item.abbreviation);
 
     const filterText = document.createElement("span");
     filterText.classList.add("filter-text");

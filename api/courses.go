@@ -7,8 +7,8 @@ import (
 	"time"
 
 	_ "github.com/lib/pq"
-	"github.com/popestr/rcpope-net/api/courses"
-	"github.com/popestr/rcpope-net/api/db"
+	"github.com/popestr/rcpope-net/pkg/courses"
+	"github.com/popestr/rcpope-net/pkg/db"
 )
 
 func Courses(w http.ResponseWriter, r *http.Request) {

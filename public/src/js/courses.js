@@ -169,17 +169,25 @@ const appendCourseGroupHeader = (semester, group) => {
  * @returns {string[]} The classes for the course.
  */
 const getCourseClasses = (course) => {
-  // need to handle classifications or languages being undefined
+  return mapCourseAbbreviations(course, formatClass);
+};
 
+const getClassifications = (course) => {
+  return mapCourseAbbreviations(course, identity);
+};
+
+const mapCourseAbbreviations = (course, mapFunction) => {
   const classifications = course.classifications || [];
   const languages = course.languages || [];
 
-  return [...languages.map(formatClass), ...classifications.map(formatClass)];
+  return [...languages.map(mapFunction), ...classifications.map(mapFunction)];
 };
 
 const formatClass = (abbreviation) => {
   return `course--${abbreviation}`;
 };
+
+const identity = (x) => x;
 
 /**
  * Appends a course to a specific group.
@@ -190,7 +198,7 @@ const formatClass = (abbreviation) => {
 const appendCourseToGroup = (course, group) => {
   const courseElement = document.createElement("div");
   courseElement.classList.add("course", ...getCourseClasses(course));
-  courseElement.setAttribute("data-classifications", `${course.classification} ${course.languages}`);
+  courseElement.setAttribute("data-classifications", `${getClassifications(course).join(" ")}`);
   courseElement.setAttribute("data-selectedby", "0");
 
   const courseTitleElement = document.createElement("span");

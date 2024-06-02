@@ -172,10 +172,19 @@ const getCourseClasses = (course) => {
   return mapCourseAbbreviations(course, formatClass);
 };
 
+/**
+ * @param {Course} course
+ * @returns {string[]} The classifications for the course.
+ */
 const getClassifications = (course) => {
   return mapCourseAbbreviations(course, identity);
 };
 
+/**
+ * @param {Course} course
+ * @param {Function} mapFunction
+ * @returns {string[]} The mapped course abbreviations.
+ */
 const mapCourseAbbreviations = (course, mapFunction) => {
   const classifications = course.classifications || [];
   const languages = course.languages || [];
@@ -183,6 +192,10 @@ const mapCourseAbbreviations = (course, mapFunction) => {
   return [...languages.map(mapFunction), ...classifications.map(mapFunction)];
 };
 
+/**
+ * @param {string} abbreviation
+ * @returns {string} The formatted class name.
+ */
 const formatClass = (abbreviation) => {
   return `course--${abbreviation}`;
 };

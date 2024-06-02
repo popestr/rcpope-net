@@ -3,23 +3,23 @@ package courses
 import "database/sql"
 
 type Course struct {
-	Semester            string `json:"semester"`
-	CourseCode          string `json:"course_code"`
-	CourseName          string `json:"course_name"`
-	CourseTopic         string `json:"course_topic"`
-	Classification      string `json:"classification"`
-	CodeAvailable       bool   `json:"code_available"`
-	Languages           string `json:"languages"`
-	Summary             string `json:"summary"`
-	ClassificationIcons string `json:"classification_icons"`
-	LangIcons           string `json:"lang_icons"`
-	CourseClasses       string `json:"course_classes"`
+	Semester            string `json:"semester" db:"semester"`
+	CourseCode          string `json:"course_code" db:"course_code"`
+	CourseName          string `json:"course_name" db:"course_name"`
+	CourseTopic         string `json:"course_topic" db:"course_topic"`
+	Classification      string `json:"classification" db:"classification"`
+	CodeAvailable       bool   `json:"code_available" db:"code_available"`
+	Languages           string `json:"languages" db:"languages"`
+	Summary             string `json:"summary" db:"summary"`
+	ClassificationIcons string `json:"classification_icons" db:"classification_icons"`
+	LangIcons           string `json:"lang_icons" db:"lang_icons"`
+	CourseClasses       string `json:"course_classes" db:"course_classes"`
 }
 
 type Abbreviation struct {
-	Abbreviation string `json:"abbreviation"`
-	IconHTML     string `json:"icon_html"`
-	Longname     string `json:"longname"`
+	Abbreviation string `json:"abbreviation" db:"abbreviation"`
+	IconHTML     string `json:"icon_html" db:"icon_html"`
+	Longname     string `json:"longname" db:"longname"`
 }
 
 type Response struct {

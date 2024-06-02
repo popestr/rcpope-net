@@ -5,11 +5,11 @@ import (
 	"os"
 
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 )
 
 const (
 	port          = "5432"
-	cacheFilename = "cache.json"
 )
 
 var (
@@ -17,7 +17,6 @@ var (
 	user          = MustGet("POSTGRES_USER")
 	password      = MustGet("POSTGRES_PASSWORD")
 	dbname        = MustGet("POSTGRES_DATABASE")
-	refreshSecret = MustGet("REFRESH_SECRET")
 )
 
 func MustGet(secretName string) string {

@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"time"
 
-	_ "github.com/lib/pq"
 	"github.com/popestr/rcpope-net/pkg/courses"
 	"github.com/popestr/rcpope-net/pkg/db"
 )
@@ -56,5 +55,6 @@ func Courses(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.WriteHeader(http.StatusOK)
 	w.Write(jsonData)
 }

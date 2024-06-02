@@ -14,39 +14,26 @@ ORDER BY semester_id DESC
 `
 
 func FetchCourses(db *sqlx.DB) ([]Course, error) {
-	rows, err := db.Query(courseQuery)
+	var courses []CourseSql
+	err := db.Select(&courses, courseQuery)
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
 
-	var courses []Course
-	for rows.Next() {
-		var course CourseSql
-		if err := rows.Scan(&course.Semester, &course.CourseCode, &course.CourseName, &course.CourseTopic, &course.Classification, &course.CodeAvailable,
-			&course.Languages, &course.Summary, &course.ClassificationIcons, &course.LangIcons, &course.CourseClasses); err != nil {
-			return nil, err
-		}
-
-		courses = append(courses, course.Course())
+	var courseList []Course
+	for _, course := range courses {
+		courseList = append(courseList, course.Course())
 	}
-	return courses, nil
+
+	return courseList, nil
 }
 
 func FetchAbbreviations(db *sqlx.DB, abbrType string) ([]Abbreviation, error) {
-	rows, err := db.Query("SELECT abbreviation, icon_html, longname FROM abbreviations WHERE type = $1", abbrType)
+	var abbreviations []Abbreviation
+	err := db.Select(&abbreviations, "SELECT abbreviation, icon_html, longname FROM abbreviations WHERE type = $1", abbrType)
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
 
-	var abbreviations []Abbreviation
-	for rows.Next() {
-		var abbreviation Abbreviation
-		if err := rows.Scan(&abbreviation.Abbreviation, &abbreviation.IconHTML, &abbreviation.Longname); err != nil {
-			return nil, err
-		}
-		abbreviations = append(abbreviations, abbreviation)
-	}
 	return abbreviations, nil
 }

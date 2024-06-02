@@ -1,4 +1,4 @@
-module rcpope-net
+module github.com/popestr/rcpope-net
 
 go 1.20
 

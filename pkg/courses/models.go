@@ -6,14 +6,14 @@ import (
 )
 
 type Course struct {
-	Semester            string `json:"semester"`
-	CourseCode          string `json:"course_code"`
-	CourseName          string `json:"course_name"`
-	CourseTopic         string `json:"course_topic"`
-	CodeAvailable       bool   `json:"code_available"`
-	Summary             string `json:"summary"`
-	Classifications      []string `json:"classifications"`
-	Languages 			[]string `json:"languages"`
+	Semester        string   `json:"semester"`
+	CourseCode      string   `json:"course_code"`
+	CourseName      string   `json:"course_name"`
+	CourseTopic     string   `json:"course_topic"`
+	CodeAvailable   bool     `json:"code_available"`
+	Summary         string   `json:"summary"`
+	Classifications []string `json:"classifications"`
+	Languages       []string `json:"languages"`
 }
 
 type Abbreviation struct {
@@ -29,14 +29,14 @@ type Response struct {
 }
 
 type CourseSql struct {
-	Semester            sql.NullString `db:"semester"`
-	CourseCode          sql.NullString `db:"course_code"`
-	CourseName          sql.NullString `db:"course_name"`
-	CourseTopic         sql.NullString `db:"course_topic"`
-	CodeAvailable       sql.NullInt32  `db:"code_available"`
-	Summary             sql.NullString `db:"summary"`
-	Classifications 	sql.NullString `db:"classification"`
-	Languages           sql.NullString `db:"languages"`
+	Semester        sql.NullString `db:"semester"`
+	CourseCode      sql.NullString `db:"course_code"`
+	CourseName      sql.NullString `db:"course_name"`
+	CourseTopic     sql.NullString `db:"course_topic"`
+	CodeAvailable   sql.NullInt32  `db:"code_available"`
+	Summary         sql.NullString `db:"summary"`
+	Classifications sql.NullString `db:"classification"`
+	Languages       sql.NullString `db:"languages"`
 }
 
 func (c *CourseSql) Course() Course {
@@ -51,13 +51,13 @@ func (c *CourseSql) Course() Course {
 	}
 
 	return Course{
-		Semester:            c.Semester.String,
-		CourseCode:          c.CourseCode.String,
-		CourseName:          c.CourseName.String,
-		CourseTopic:         c.CourseTopic.String,
-		CodeAvailable:       c.CodeAvailable.Int32 == 1,
-		Summary:             c.Summary.String,
-		Classifications:     classifications,
-		Languages:           languages,
+		Semester:        c.Semester.String,
+		CourseCode:      c.CourseCode.String,
+		CourseName:      c.CourseName.String,
+		CourseTopic:     c.CourseTopic.String,
+		CodeAvailable:   c.CodeAvailable.Int32 == 1,
+		Summary:         c.Summary.String,
+		Classifications: classifications,
+		Languages:       languages,
 	}
 }

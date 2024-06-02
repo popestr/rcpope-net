@@ -9,14 +9,14 @@ import (
 )
 
 const (
-	port          = "5432"
+	port = "5432"
 )
 
 var (
-	host          = MustGet("POSTGRES_HOST")
-	user          = MustGet("POSTGRES_USER")
-	password      = MustGet("POSTGRES_PASSWORD")
-	dbname        = MustGet("POSTGRES_DATABASE")
+	host     = MustGet("POSTGRES_HOST")
+	user     = MustGet("POSTGRES_USER")
+	password = MustGet("POSTGRES_PASSWORD")
+	dbname   = MustGet("POSTGRES_DATABASE")
 )
 
 func MustGet(secretName string) string {

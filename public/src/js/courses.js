@@ -99,6 +99,7 @@ const toggleCourseGroup = (groupHeaderElement) => {
  */
 window.onload = () => {
   fetchCourses().then((data) => {
+    console.log(data);
     populateCourses(data);
     populateFilters(data);
 
@@ -115,7 +116,7 @@ window.onload = () => {
  * @returns {Promise<CoursesData>} A promise that resolves to the courses data.
  */
 const fetchCourses = () => {
-  return fetch("../api/courses").then((response) => {
+  return fetch("https://api.rcpope.net/courses").then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to fetch courses. (got ${response.status})`);
     }

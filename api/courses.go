@@ -1,23 +1,19 @@
-package api
+package main
 
 import (
-	"encoding/json"
-	"log"
-	"net/http"
+	"context"
+	"fmt"
 	"time"
 
-	"github.com/popestr/rcpope-net/pkg/courses"
-	"github.com/popestr/rcpope-net/pkg/db"
+	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/popestr/rcpope-net/api/lib/courses"
+	"github.com/popestr/rcpope-net/api/lib/db"
 )
 
-func Courses(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-
+func HandleRequest(ctx context.Context) (*courses.Response, error) {
 	db, err := db.GetDB()
 	if err != nil {
-		log.Println("Error connecting to database:", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
+		return nil, fmt.Errorf("error connecting to database: %w", err)
 	}
 	defer db.Close()
 
@@ -26,35 +22,25 @@ func Courses(w http.ResponseWriter, r *http.Request) {
 
 	courseList, err := courses.FetchCourses(db)
 	if err != nil {
-		log.Println("Error fetching courses:", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
+		return nil, fmt.Errorf("error fetching courses: %w", err)
 	}
 	response.Courses = courseList
 
 	classifications, err := courses.FetchAbbreviations(db, "class")
 	if err != nil {
-		log.Println("Error fetching classifications:", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
+		return nil, fmt.Errorf("error fetching classifications: %w", err)
 	}
 	response.Classifications = classifications
 
 	languages, err := courses.FetchAbbreviations(db, "lang")
 	if err != nil {
-		log.Println("Error fetching languages:", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
+		return nil, fmt.Errorf("error fetching languages: %w", err)
 	}
 	response.Languages = languages
 
-	jsonData, err := json.MarshalIndent(response, "", "  ")
-	if err != nil {
-		log.Println("Error marshaling response data:", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
+	return &response, nil
+}
 
-	w.WriteHeader(http.StatusOK)
-	w.Write(jsonData)
+func main() {
+	lambda.Start(HandleRequest)
 }

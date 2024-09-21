@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/popestr/rcpope-net/api/lib/courses"
-	"github.com/popestr/rcpope-net/api/lib/db"
+	"github.com/popestr/rcpope-net/lambda/lib/courses"
+	"github.com/popestr/rcpope-net/lambda/lib/db"
 )
 
 func HandleRequest(ctx context.Context) (*courses.Response, error) {

@@ -99,7 +99,6 @@ const toggleCourseGroup = (groupHeaderElement) => {
  */
 window.onload = () => {
   fetchCourses().then((data) => {
-    console.log(data);
     populateCourses(data);
     populateFilters(data);
 

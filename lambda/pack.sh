@@ -21,12 +21,12 @@ else
 fi
 
 # Build the Go program
-go build -o bootstrap $1.go
+go build -o bootstrap $filename.go
 
 # Check if the build was successful
 if [ $? -eq 0 ]; then
   # Create a zip file containing the bootstrap binary
-  zip $1\_packed.zip bootstrap
+  zip $filename\_packed.zip bootstrap
   echo "Build and zip successful."
 else
   echo "Build failed."

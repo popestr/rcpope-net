@@ -29,7 +29,7 @@ type PostgresConnection struct {
 	Port     string `json:"port"`
 	User     string `json:"username"`
 	Password string `json:"password"`
-	Dbname   string `json:"dbname"`
+	DbName   string `json:"dbname"`
 }
 
 func init() {
@@ -65,12 +65,12 @@ func MustGet(secretName string) string {
 	return val
 }
 
-func GetConnectionString() string {
-	return fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require", connection.Host, connection.Port, connection.User, connection.Password, connection.Dbname)
+func (c PostgresConnection) GetConnectionString() string {
+	return fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require", c.Host, c.Port, c.User, c.Password, c.DbName)
 }
 
-func GetDB() (*sqlx.DB, error) {
-	db, err := sqlx.Connect("postgres", GetConnectionString())
+func DB() (*sqlx.DB, error) {
+	db, err := sqlx.Connect("postgres", connection.GetConnectionString())
 	if err != nil {
 		return nil, err
 	}

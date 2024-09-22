@@ -6,17 +6,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/jmoiron/sqlx"
 	"github.com/popestr/rcpope-net/lambda/lib/courses"
-	"github.com/popestr/rcpope-net/lambda/lib/db"
+	pgdb "github.com/popestr/rcpope-net/lambda/lib/db"
 )
 
-func HandleRequest(ctx context.Context) (*courses.Response, error) {
-	db, err := db.GetDB()
-	if err != nil {
-		return nil, fmt.Errorf("error connecting to database: %w", err)
-	}
-	defer db.Close()
+var db *sqlx.DB
 
+func HandleRequest(ctx context.Context) (*courses.Response, error) {
 	var response courses.Response
 	response.QueryTime = time.Now().Format(time.RFC3339)
 
@@ -42,5 +39,11 @@ func HandleRequest(ctx context.Context) (*courses.Response, error) {
 }
 
 func main() {
+	var err error
+	db, err = pgdb.DB()
+	if err != nil {
+		panic(err)
+	}
+
 	lambda.Start(HandleRequest)
 }

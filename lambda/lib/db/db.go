@@ -1,23 +1,17 @@
 package db
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"log"
 	"os"
-
-	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/aws/aws-sdk-go-v2/service/secretsmanager"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 )
 
 const (
-	secretName = "rcpope-net/verceldb"
-	region     = "us-east-1"
+	secretName = "rcpopenet_verceldb"
 )
 
 var (
@@ -33,25 +27,12 @@ type PostgresConnection struct {
 }
 
 func init() {
-	ctx := context.Background()
-
-	config, err := config.LoadDefaultConfig(ctx, config.WithRegion(region))
+	secret, err := GetSecret(secretName)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	svc := secretsmanager.NewFromConfig(config)
-
-	input := &secretsmanager.GetSecretValueInput{
-		SecretId: aws.String(secretName),
-	}
-
-	result, err := svc.GetSecretValue(ctx, input)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	err = json.Unmarshal([]byte(*result.SecretString), &connection)
+	err = json.Unmarshal([]byte(secret), &connection)
 	if err != nil {
 		log.Fatal(err)
 	}
